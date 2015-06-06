@@ -90,4 +90,9 @@ class Sorcery(Card):
 
  
 driver=Driver()
-    
+    data = []
+with open('AllSets-x.json') as f:
+    for line in f:
+        data.append(json.loads(line))
+        
+print(data)

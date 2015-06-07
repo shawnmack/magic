@@ -1,12 +1,46 @@
+#This is a work in progress Magic the Gathering Emulator. Using card data in a data structure I will
+#create an emulator and magic computer game.
 import random
-import json
+import csv
+import sys
+import datetime
+import string
 
-#example of a list
+#
+#
+#
+#
+#MAGICAL EMULATOR
+#
+#Shawn Mack 2015
+#
 
 
+#
+#SOURCE
+#
+
+#Module to import data 
+def card_import(file_name):
+    f = open(file_name,'rb')
+ 
+
+         print('Success',' at', datetime.datetime.now())
+         f.close()
+
+#Initiates a game with an opponent
 class Driver(object):
 
-    def __init__(self,):
+
+ 
+    #Constructor
+    def __init__(self):
+
+
+        #calling to import card data
+        card_import('magic.csv')
+
+        print(datetime.datetime.now())
         turn=0
         p1roll=random.randrange(0, 7)+random.randrange(0, 7)
         p2roll=random.randrange(0, 7)+random.randrange(0, 7)
@@ -17,23 +51,20 @@ class Driver(object):
             print('You are on the draw.')
             turn=1
 
-            
-class Game(object):
 
-    def __init__(self,turn):
-        if turn==1:
+
+#Card master object     
 class Card(object):
 
     def set_mana(self, x):
         self.mana = x
     def get_mana(self):
           return self.mana
-
     def __init__(self,manacost):
          self.set_mana(manacost)
          
          
-
+#Player
 class Player(object):
 
       def __init__(self, title,deck):
@@ -43,6 +74,7 @@ class Player(object):
          wins=0
          loss=0
 
+#Land
 class Land(Card):
     
     def set_mana(self, x):
@@ -54,6 +86,7 @@ class Land(Card):
          self.name=type
          self.mana=0
 
+#Permanent
 class Permanent(Card):
 
     def set_mana(self, x):
@@ -64,7 +97,8 @@ class Permanent(Card):
     def __init__(self, type, manacost):
          self.name=type
          self.set_mana(manacost)
-         
+
+#Instant         
 class Instant(Card):
 
     def set_mana(self, x):
@@ -75,7 +109,7 @@ class Instant(Card):
     def __init__(self, type, manacost):
          self.name=type
          self.set_mana(manacost)
-
+#Sorcery
 class Sorcery(Card):
    
     def set_mana(self, x):
@@ -87,12 +121,8 @@ class Sorcery(Card):
          self.set_mana(manacost)
 
 
-
+#
+#DRIVER
+#
  
 driver=Driver()
-    data = []
-with open('AllSets-x.json') as f:
-    for line in f:
-        data.append(json.loads(line))
-        
-print(data)
